@@ -2,6 +2,7 @@ package com.example.listview_20231029
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.listview_20231029.adapters.StudentAdapter
 import com.example.listview_20231029.databinding.ActivityMainBinding
@@ -31,6 +32,13 @@ class MainActivity : AppCompatActivity() {
         mStdAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
 
         binding.studentListView.adapter = mStdAdapter
+
+        binding.studentListView.setOnItemClickListener { adapterView, view, position, l ->
+
+            val clickedStd = mStudentList[position]
+
+            Toast.makeText(this, "${clickedStd.name}:${clickedStd.phoneNum}", Toast.LENGTH_SHORT).show()
+        }
 
     }
 }
